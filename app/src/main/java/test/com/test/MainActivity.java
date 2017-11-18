@@ -14,14 +14,15 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     List<ModelClass> listItems = new ArrayList<>();
-    TextView tvTextView;
+    TextView tvEntries,tvText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvTextView = (TextView)findViewById(R.id.tvTextView);
+        tvText=(TextView)findViewById(R.id.tvText);
+        tvEntries = (TextView)findViewById(R.id.tvEntries);
 
         getItems();
 
@@ -37,11 +38,9 @@ public class MainActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     listItems.addAll(response.body());
                     Log.e("MainActivity", "email list size:" + listItems.size());
-                    tvTextView.setText(String.valueOf(listItems.size()));
-
+                    tvEntries.setText(String.valueOf(listItems.size()));
                 }
             }
-
             @Override
             public void onFailure(Call<List<ModelClass>> call, Throwable t) {
 
